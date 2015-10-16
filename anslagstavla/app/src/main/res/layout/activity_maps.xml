@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent">
             <TextView
-                android:layout_width="1pd"
+                android:layout_width="1in"
                 android:layout_height="1dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Chat Log"
