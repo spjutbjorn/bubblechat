@@ -13,10 +13,12 @@ public class InputController {
     private EditText editUserInput;
     private TextView textUserLog;
     private Button buttonUserSend;
-    InputController(EditText userInput, TextView userLog, Button userSend){
+    private DataHandler textDataHandler;
+    InputController(EditText userInput, TextView userLog, Button userSend, DataHandler dataHandler){
         editUserInput = userInput;
         textUserLog = userLog;
         buttonUserSend = userSend;
+        textDataHandler = dataHandler;
         setupInput(userInput);
         setupLog(userLog);
         setupSend(userSend);
@@ -26,14 +28,14 @@ public class InputController {
         userLog.setText("Chat Empty");
     }
 
-    private void setupSend(Button userSend) {
+    private void setupSend(final Button userSend) {
         userSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 editUserInput.setTextColor(Color.GREEN);
-                textUserLog.setText(editUserInput.getText() + "\r\n");
+                textDataHandler.addToLog(editUserInput.getText().toString());
+                textUserLog.setText(textDataHandler.getTotalLog());
                 editUserInput.setText("");
-                editUserInput.clearFocus();
             }
         });
     }
