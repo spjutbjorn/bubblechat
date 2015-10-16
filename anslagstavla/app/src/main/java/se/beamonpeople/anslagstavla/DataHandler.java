@@ -17,7 +17,7 @@ public class DataHandler {
 
     public void addToLog(String row){
         if(dataLog == null)
-            dataLog = row;
+            dataLog = row + "\r\n";
         else {
             dataLog += row + "\r\n";
         }
