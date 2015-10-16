@@ -2,12 +2,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:baselineAligned="false"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:weightSum="1">
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_height="245dp" android:id="@+id/map" tools:context=".MapsActivity"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_weight="0.92">
     </fragment>
 
     <TableLayout android:layout_gravity="bottom" android:layout_height="wrap_content" android:layout_width="match_parent">
@@ -15,11 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent">
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_width="0pd"
+                android:layout_height="0dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Chat Log"
                 android:id="@+id/textView"
+                android:visibility="invisible"
                  />
 
         </TableRow>
@@ -31,7 +34,7 @@
                     android:background="@color/common_action_bar_splitter"
                     android:id="@+id/editText"
                     android:inputType="textMultiLine"
-                    android:ems="13"
+                    android:ems="10"
                     android:onClick="@+id/TextClicked"/>
                 <Button android:text="Send" android:id="@+id/sendText"></Button>
             </TableRow>
