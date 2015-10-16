@@ -2,6 +2,7 @@ package se.beamonpeople.anslagstavla;
 
 import android.app.Activity;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -9,6 +10,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapHandler implements OnMapReadyCallback {
+    public static final LatLng MARIA_TORGET = new LatLng(59.3187082,
+            18.0611976);
     private final Activity mainActivity;
     private final DataHandler dataHandler;
     private GoogleMap mMap;
@@ -25,9 +28,12 @@ public class MapHandler implements OnMapReadyCallback {
 
         mapController = new MapController(mMap, mainActivity, dataHandler);
 
-        LatLng beamon = new LatLng(59.3, 18);
-        mMap.moveCamera(CameraUpdateFactory.zoomBy(15));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(beamon));
 
+        CameraUpdate center=
+                CameraUpdateFactory.newLatLng(MARIA_TORGET);
+        CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
+
+        mMap.moveCamera(center);
+        mMap.animateCamera(zoom);
     }
 }
