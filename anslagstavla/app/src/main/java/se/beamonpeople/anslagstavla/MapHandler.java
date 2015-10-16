@@ -25,5 +25,9 @@ public class MapHandler implements OnMapReadyCallback {
 
         mapController = new MapController(mMap, mainActivity, dataHandler);
 
+        LatLng beamon = new LatLng(59.3, 18);
+        mMap.moveCamera(CameraUpdateFactory.zoomBy(15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(beamon));
+
     }
 }
