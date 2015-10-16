@@ -32,6 +32,8 @@ public class InputController {
             public void onClick(View v) {
                 editUserInput.setTextColor(Color.GREEN);
                 textUserLog.setText(editUserInput.getText() + "\r\n");
+                editUserInput.setText("");
+                editUserInput.clearFocus();
             }
         });
     }
