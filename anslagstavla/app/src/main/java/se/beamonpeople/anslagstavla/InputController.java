@@ -14,6 +14,7 @@ public class InputController {
     private TextView textUserLog;
     private Button buttonUserSend;
     private DataHandler textDataHandler;
+
     InputController(EditText userInput, TextView userLog, Button userSend, DataHandler dataHandler){
         editUserInput = userInput;
         textUserLog = userLog;
@@ -22,6 +23,7 @@ public class InputController {
         setupInput(userInput);
         setupLog(userLog);
         setupSend(userSend);
+
     }
 
     private void setupLog(TextView userLog) {
@@ -34,6 +36,7 @@ public class InputController {
             public void onClick(View v) {
                 editUserInput.setTextColor(Color.GREEN);
                 textDataHandler.addToLog(editUserInput.getText().toString());
+
                 textUserLog.setText(textDataHandler.getTotalLog());
                 editUserInput.setText("");
             }

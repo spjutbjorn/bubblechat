@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -16,27 +17,21 @@ public class MapController implements GoogleMap.OnMapClickListener, GoogleMap.In
 
     private final GoogleMap map;
     private final Activity mainActivity;
+    private final DataHandler dataHandler;
 
-    public MapController(GoogleMap mMap, Activity mainActivity) {
+    public MapController(GoogleMap mMap, Activity mainActivity, DataHandler dataHandler) {
         this.map = mMap;
         map.setOnMapClickListener(this);
         map.setInfoWindowAdapter(this);
         this.mainActivity = mainActivity;
+        this.dataHandler = dataHandler;
     }
 
     @Override
     public void onMapClick(final LatLng latLng) {
         MarkerOptions marker = new MarkerOptions()
-                .position(latLng)
-                .title("Ny");
+                .position(latLng);
         map.addMarker(marker);
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                return false;
-            }
-
-        });
     }
 
     @Override
@@ -48,19 +43,19 @@ public class MapController implements GoogleMap.OnMapClickListener, GoogleMap.In
     public View getInfoContents(Marker marker) {
         View view = mainActivity.getLayoutInflater().inflate(R.layout.info_window, null);
 
-        final EditText editText = (EditText) view.findViewById(R.id.infoWindowEditText);
+        final TextView textView = (TextView) view.findViewById(R.id.infoWindowTextView);
 
-        editText.setOnClickListener(new View.OnClickListener() {
+
+        textView.setText(dataHandler.getTotalLog());
+
+        textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editText.setText("Namn");
-                editText.setWidth(50);
-                editText.selectAll();
-                editText.setTextColor(Color.CYAN);
+                textView.setWidth(50);
+                textView.setTextColor(Color.CYAN);
             }
         });
         return view;
-
 
     }
 }

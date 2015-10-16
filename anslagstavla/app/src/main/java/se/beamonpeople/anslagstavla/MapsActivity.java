@@ -21,12 +21,13 @@ public class MapsActivity extends FragmentActivity {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
-        mapFragment.getMapAsync(new MapHandler(this));
+        DataHandler dataHandler = new DataHandler();
+
+        mapFragment.getMapAsync(new MapHandler(this, dataHandler));
         EditText userInput = (EditText) findViewById(R.id.editText);
         TextView userLog = (TextView) findViewById(R.id.textView);
         Button userSend = (Button) findViewById(R.id.sendText);
 
-        DataHandler dataHandler = new DataHandler();
         new InputController(userInput, userLog,userSend, dataHandler);
 
     }

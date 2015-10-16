@@ -10,24 +10,20 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapHandler implements OnMapReadyCallback {
     private final Activity mainActivity;
+    private final DataHandler dataHandler;
     private GoogleMap mMap;
     private MapController mapController;
 
-    public MapHandler(MapsActivity mainActivity) {
+    public MapHandler(MapsActivity mainActivity, DataHandler dataHandler) {
         this.mainActivity = mainActivity;
+        this.dataHandler = dataHandler;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-
-        mapController = new MapController(mMap, mainActivity);
+        mapController = new MapController(mMap, mainActivity, dataHandler);
 
     }
 }
